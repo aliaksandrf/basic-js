@@ -16,12 +16,29 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function renameFiles(names) {
-  throw new NotImplementedError('Not implemented');
+  //throw new NotImplementedError('Not implemented');
+
+  let objNames = {};
+  let answer = [];
+  names.forEach((item) =>{
+    if(!(item in objNames)) {
+      answer.push(item);
+      objNames[item] = 1;
+    } else {
+      let tempName = item + '(' + objNames[item] + ')';
+      answer.push(tempName);
+      objNames[item]++;
+      objNames[tempName] = 1;
+    }
+
+  });
+
+  return answer;
 
 
 
 
-  let objNames = {}
+/*   let objNames = {}
   let answer = [];
   names.forEach(function(item) {
     if (!(item in objNames)) {
@@ -34,7 +51,7 @@ function renameFiles(names) {
     }
   })
 
-  return answer;
+  return answer; */
   
   // remove line with error and write your code here
 }
