@@ -5,58 +5,43 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 const chainMaker = {
-  chainString: "",
+  chain: [],
 
 
   getLength() {
-    throw new NotImplementedError('Not implemented');
-    return this.chainString.split("~~").length;
     //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    return this.chain.length;
   },
-  addLink(value) {
-    throw new NotImplementedError('Not implemented');
 
-    if(value === undefined) {
-      this.chainString = this.chainString + "( )~~";
-    }
-
-    this.chainString = this.chainString + value  + "~~";
-
-
-    //    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  addLink(value = '  ') {
+    //throw new NotImplementedError('Not implemented');
+    this.chain.push(`( ${String(value)} )`);
+    return this;
   },
+
   removeLink(position) {
-    throw new NotImplementedError('Not implemented');
-    if(!Number.isInteger(position) || position > this.getLength() || position <= 0) {
-      finishChain();
-      throw new Error(`You can't remove incorrect link!`);
+    //throw new NotImplementedError('Not implemented');
+    if (position <=0 || position > this.getLength() || !Number(position) || !Number.isInteger(position)) {
+      this.chain = [];
+      throw Error(`You can't remove incorrect link!`);
     }
-    
-    
-    
-    
-    
-    // remove line with error and write your code here
+    this.chain = this.chain.filter((item, index) => index + 1 !== position);
+    return this;
   },
+
   reverseChain() {
-    throw new NotImplementedError('Not implemented');
-    this.chainString = this.chainString.split('~~').reverse().join("~~");
-
-
-
     //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    this.chain = this.chain.reverse();
+    return this;
   },
+
   finishChain() {
-    throw new NotImplementedError('Not implemented');
-    let temp = this.chainString;
-    this.chainString = "";
-    return temp;
     //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let finish = this.chain.join('~~');
+    this.chain = [];
+    return finish;
   }
+
 };
 
 module.exports = {
