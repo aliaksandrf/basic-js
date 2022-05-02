@@ -12,10 +12,31 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function deleteDigit(n) {
-  let arr = (''+n).split('').map(Number);
+  //throw new NotImplementedError('Not implemented');
+
+  let stringNumber = ""+n;
+  let arr = [];
+
+  arr.push(+stringNumber.slice(1));
+  for (let i = 1; i < stringNumber.length; i++) {
+    let temp = stringNumber.slice(0, i) + stringNumber.slice(i + 1);
+    arr.push(+temp);
+  }
+
+
+  let max = arr.sort((a, b) => b - a)
+  return max[0];
+
+
+
+
+
+
+
+/*   let arr = (''+n).split('').map(Number);
   let max = 0;
-/*   console.log(arr.slice(0, 1));
-  console.log(arr.slice(0, 0) + arr.slice(1)); */
+  console.log(arr.slice(0, 1));
+  console.log(arr.slice(0, 0) + arr.slice(1));
 
   arr.forEach((item, index) => {
     let tempNumber = +(arr.slice(0, index).join('') + arr.slice(index + 1).join(''));
@@ -23,16 +44,8 @@ function deleteDigit(n) {
     if(tempNumber > max) max = tempNumber;
   })
 
-  return max;
+  return max; */
 
-
-
-
-
-
-
-  //throw new NotImplementedError('Not implemented');
-  
 /* console.log(n);
   
 let arr = (""+n).split("").map(Number);
